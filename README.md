@@ -58,3 +58,10 @@ Start the server
   nodemon index.js
 ```
 
+
+## Tech Stack
+
+**Client:** EJS, HTML,CSS,JS.
+
+**Server:** Node, Express, pgAdmin. 
+
