@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ChatRoom</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    body {
+  font-family: "Outfit", serif;
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  background-attachment: fixed; /* Ensures it covers the whole viewport */
+  font-size: 1.4rem;
+
+}
+
+    table {
+        border-collapse: collapse; /* collapse the table border */
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #dddddd3c;
+    }
+
+    button {
+        font-family: "Outfit", serif;
+        background-color: chocolate;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 18px;
+        font-size: 1.4rem;
+     
+    }
+
+    .issue{
+        background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+        transition: all ease-in-out 0.3s;
+    }
+    .return{
+        background-color: #0276FF;
+        transition: all ease-in-out 0.3s;
+    }
+
+    .delete{
+        background: #FF4742;
+        transition: all ease-in-out 0.3s;
+    }
+
+    .add{
+    
+        transition: all ease-in-out 0.3s;
+    }
+
+    .delete:hover{
+        background: white;
+        color: #FF4742;
+    }
+
+    .issue:hover{
+        background: white;
+        color: #673FD7;
+    }
+    .return:hover{
+        background: white;
+        color: #0276FF;
+    }
+
+    .add:hover{
+        background: white;
+        color: #673FD7;
+    }
+
+    input{
+        font-family: "Outfit", serif;
+        border: none;
+        border-radius: 18px;
+        padding: 10px;
+        font-size: 1.4rem;
+        margin-top: 10px;
+        
+    }
+</style>
+
+<body>
+    <h1>All Books</h1>
+    <table>
+        <tr>
+            <th>Book Name</th>
+            <th>Book Author</th>
+            <th>Book Pages</th>
+            <th>Book Price</th>
+            <th>Book Availability</th>
+            <th>Issue</th>
+            <th>Return</th>
+            <th>Delete</th>
+        </tr>
+        <% Books.forEach(element=> { %>
+            <tr>
+                <td>
+                    <%= element.name %>
+                </td>
+                <td>
+                    <%= element.author %>
+                </td>
+                <td>
+                    <%= element.pages %>
+                </td>
+                <td>
+                    <%= element.price %>
+                </td>
+                <td>
+                    <%= element.state %>
+                </td>
+                <td>
+                    <form action="/issue" method="post">
+                        <input type="text" style="display: none;" 
+                                name="bookName" value="<%= element.name %>">
+                        <button type="submit" class="issue">Issue</button>
+                    </form>
+                </td>
+
+                <td>
+                    <form action="/return" method="post">
+                        <input type="text" style="display: none;" 
+                                name="bookName" value="<%= element.name %>">
+                        <button type="submit" class="return">Return</button>
+                    </form>
+                </td>
+
+                <td>
+                    <form action="/delete" method="post">
+                        <input type="text" style="display: none;" 
+                                name="bookName" value="<%= element.name %>">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+            <% }) %>
+
+    </table>
+
+    <h1>Add Books</h1>
+
+    <form action="/" method="post">
+        <input type="text" placeholder="Book Name" 
+                name="bookName">
+        <input type="text" placeholder="Book Author" 
+                name="bookAuthor">
+        <input type="text" placeholder="Book Pages" 
+                name="bookPages">
+        <input type="text" placeholder="Book Price" 
+                name="bookPrice">
+        <button type="submit" class="add" style="width: 200px; display: block; margin-top: 10px;">Add</button>
+</form>
+
+
+
+</body>
+
+</html>
